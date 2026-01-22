@@ -3,735 +3,158 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>International Economics: Trade Models</title>
+  <title>International Economics Teaching Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="landing.css" />
 </head>
 <body>
-  <div class="reveal">
-    <div class="slides">
-      <section class="title-slide" data-background-gradient>
-        <div class="title-block">
-          <div class="eyebrow">International Economics</div>
-          <h1>Three Workhorse Models of Trade</h1>
-          <p class="subtitle">Ricardian · Specific-Factors · Gravity</p>
-          <div class="byline">Dr. Ian Helfrich</div>
+  <main>
+    <div class="container">
+      <nav class="nav">
+        <div class="brand">
+          <span class="brand-badge"></span>
+          Intl Econ Lab
         </div>
-      </section>
+        <div class="nav-links">
+          <a href="#models">Models</a>
+          <a href="#resources">Resources</a>
+          <a href="#policy">Policy</a>
+          <a href="#teach">Teach</a>
+        </div>
+      </nav>
 
-      <section class="agenda" data-section="overview">
-        <h2>Roadmap</h2>
-        <ul>
-          <li>Ricardian model: comparative advantage and gains</li>
-          <li>Specific-Factors model: distribution in the short run</li>
-          <li>Gravity model: the scale of trade flows</li>
-          <li>Tariffs and protection: supply, demand, and evidence</li>
-          <li>Choosing the right model for the question</li>
-        </ul>
-      </section>
-
-      <section data-section="overview">
-        <h2>Four Core Questions</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Why trade?</h3>
-            <p>Gains from specialization and exchange.</p>
-          </div>
-          <div class="card">
-            <h3>What gets traded?</h3>
-            <p>Technology and opportunity cost differences.</p>
-          </div>
-          <div class="card">
-            <h3>Who gains?</h3>
-            <p>Depends on factor mobility and prices.</p>
-          </div>
-          <div class="card">
-            <h3>How much?</h3>
-            <p>Trade costs and size dominate volumes.</p>
+      <section class="hero">
+        <div class="hero-card reveal-on-scroll">
+          <div class="eyebrow">Teaching platform</div>
+          <h1>International Economics: Trade Models and Policy</h1>
+          <p>Everything you need to teach Ricardian, Specific-Factors, Gravity, and trade policy with polished slides, interactive models, and clean reference notes.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="slides.html">Launch Slides</a>
+            <a class="btn btn-secondary" href="hub.html">Open Interactive Lab</a>
           </div>
         </div>
-      </section>
-
-      <section data-section="ricardian" class="section-title">
-        <div class="section-label">Section I</div>
-        <h2>Ricardian Model</h2>
-        <p>Technology differences, comparative advantage, and gains.</p>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Core Assumptions</h2>
-        <ul>
-          <li>One factor of production: labor (L)</li>
-          <li>Perfect competition and constant returns</li>
-          <li>Labor mobile across sectors, immobile across countries</li>
-          <li>Technology summarized by unit labor requirements</li>
-        </ul>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Setup</h2>
-        <div class="equation">
-          \[a_{LC} Q_C + a_{LW} Q_W \le L\]
+        <div class="hero-card reveal-on-scroll">
+          <h2>Fast start</h2>
+          <ul class="list">
+            <li>Use the slides for class delivery.</li>
+            <li>Switch to interactives for intuition and demos.</li>
+            <li>Send students to the model notes and PDFs.</li>
+            <li>Use policy notes for real-world discussions.</li>
+          </ul>
         </div>
-        <ul>
-          <li>PPF is linear with slope \(-a_{LW}/a_{LC}\)</li>
-          <li>Opportunity cost of W in terms of C is \(a_{LW}/a_{LC}\)</li>
-        </ul>
       </section>
 
-      <section data-section="ricardian" class="diagram-slide">
-        <h2>PPF Geometry</h2>
-        <div class="diagram">
-          <svg viewBox="0 0 480 320" aria-label="Ricardian PPF">
-            <defs>
-              <linearGradient id="ppfLine" x1="0" x2="1">
-                <stop offset="0%" stop-color="#64d2ff" />
-                <stop offset="100%" stop-color="#3dd6a2" />
-              </linearGradient>
-            </defs>
-            <rect x="36" y="20" width="410" height="260" rx="18" fill="#0f1725" stroke="#26384f" />
-            <line x1="78" y1="250" x2="420" y2="250" stroke="#3a4a63" stroke-width="2" />
-            <line x1="78" y1="250" x2="78" y2="40" stroke="#3a4a63" stroke-width="2" />
-            <line x1="78" y1="250" x2="400" y2="70" stroke="url(#ppfLine)" stroke-width="4" />
-            <text x="410" y="270" fill="#c6d4e7" font-size="14">Q<sub>C</sub></text>
-            <text x="58" y="40" fill="#c6d4e7" font-size="14">Q<sub>W</sub></text>
-            <circle cx="320" cy="110" r="5" fill="#3dd6a2" />
-            <text x="330" y="110" fill="#c6d4e7" font-size="12">Specialization point</text>
-          </svg>
-        </div>
-        <p class="note">Autarky relative price equals the PPF slope.</p>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Comparative Advantage</h2>
-        <div class="equation">
-          \[\frac{a_{LC}}{a_{LW}} < \frac{a^*_{LC}}{a^*_{LW}}\Rightarrow\text{Home has CA in C}\]
-        </div>
-        <ul>
-          <li>Trade price must lie between autarky prices</li>
-          <li>Specialization delivers gains even if one country is more productive in both goods</li>
-        </ul>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>World Relative Supply and Demand</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Relative Supply (RS)</h3>
-            <p>Vertical under complete specialization.</p>
+      <section id="models" class="section">
+        <div class="split">
+          <div class="reveal-on-scroll">
+            <div class="eyebrow">Core models</div>
+            <h2>Model Suite</h2>
+            <p>Each model has a theory note, a PDF handout, and direct pathways into the interactive lab.</p>
           </div>
-          <div class="card">
-            <h3>Relative Demand (RD)</h3>
-            <p>Downward sloping in \(P_W/P_C\).</p>
-          </div>
-        </div>
-        <div class="diagram small">
-          <svg viewBox="0 0 420 260" aria-label="RS/RD">
-            <rect x="30" y="20" width="360" height="200" rx="16" fill="#0f1725" stroke="#26384f" />
-            <line x1="60" y1="200" x2="370" y2="200" stroke="#3a4a63" stroke-width="2" />
-            <line x1="60" y1="200" x2="60" y2="40" stroke="#3a4a63" stroke-width="2" />
-            <line x1="200" y1="200" x2="200" y2="60" stroke="#64d2ff" stroke-width="4" />
-            <line x1="90" y1="70" x2="340" y2="190" stroke="#f6c177" stroke-width="4" />
-            <text x="210" y="70" fill="#64d2ff" font-size="12">RS</text>
-            <text x="320" y="170" fill="#f6c177" font-size="12">RD</text>
-          </svg>
-        </div>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Gains from Trade</h2>
-        <ul>
-          <li>Production moves to the specialization point</li>
-          <li>Consumption lies on a world-price budget line</li>
-          <li>Budget line is flatter than autarky PPF</li>
-          <li>Consumption set expands beyond the PPF</li>
-        </ul>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Real Wages</h2>
-        <div class="equation">
-          \[w = \frac{P_C}{a_{LC}} = \frac{P_W}{a_{LW}}\]
-        </div>
-        <ul>
-          <li>\(w/P_C\) fixed by technology</li>
-          <li>\(w/P_W\) rises for the export country</li>
-          <li>Single-factor economy implies no distributional conflict</li>
-        </ul>
-      </section>
-
-      <section data-section="ricardian" class="interactive">
-        <h2>Interactive: Comparative Advantage Calculator</h2>
-        <div class="interactive-panel">
-          <div class="inputs">
-            <div class="input-group">
-              <label>Home a<sub>LC</sub></label>
-              <input type="number" id="aLC" value="1" min="0.1" step="0.1" />
+          <div class="reveal-on-scroll">
+            <div class="cta-row">
+              <a class="btn btn-secondary" href="models/RicardianModel.md">Ricardian Notes</a>
+              <a class="btn btn-secondary" href="pdfs/RicardianModel.pdf">Ricardian PDF</a>
             </div>
-            <div class="input-group">
-              <label>Home a<sub>LW</sub></label>
-              <input type="number" id="aLW" value="2" min="0.1" step="0.1" />
+            <div class="cta-row">
+              <a class="btn btn-secondary" href="models/SpecificFactorsModel.md">Specific Factors Notes</a>
+              <a class="btn btn-secondary" href="pdfs/SpecificFactorsModel.pdf">Specific Factors PDF</a>
             </div>
-            <div class="input-group">
-              <label>Foreign a<sub>LC</sub>*</label>
-              <input type="number" id="aLCs" value="2" min="0.1" step="0.1" />
-            </div>
-            <div class="input-group">
-              <label>Foreign a<sub>LW</sub>*</label>
-              <input type="number" id="aLWs" value="3" min="0.1" step="0.1" />
+            <div class="cta-row">
+              <a class="btn btn-secondary" href="models/HeckscherOhlinModel.md">Heckscher-Ohlin Notes</a>
+              <a class="btn btn-secondary" href="pdfs/HeckscherOhlinModel.pdf">Heckscher-Ohlin PDF</a>
             </div>
           </div>
-          <div class="results">
-            <div class="metric"><span>Home OC of W</span><strong id="ocHome">2.00</strong></div>
-            <div class="metric"><span>Foreign OC of W</span><strong id="ocForeign">1.50</strong></div>
-            <div class="metric highlight"><span>Comparative Advantage</span><strong id="caResult">Home in C, Foreign in W</strong></div>
-            <div class="metric"><span>Trade price range</span><strong id="priceRange">2.00 &gt; P<sub>W</sub>/P<sub>C</sub> &gt; 1.50</strong></div>
+        </div>
+        <div class="card-grid">
+          <div class="card reveal-on-scroll">
+            <span class="tag">Ricardian</span>
+            <h3>Comparative advantage</h3>
+            <p>Technology differences, specialization, and gains from trade.</p>
+            <a href="hub.html">Try the Ricardian interactive</a>
           </div>
-        </div>
-        <p class="note">Adjust unit labor requirements and watch the pattern flip.</p>
-      </section>
-
-      <section data-section="ricardian">
-        <h2>Ricardian Limits</h2>
-        <ul>
-          <li>Complete specialization is strong; reality is more mixed</li>
-          <li>No role for multiple factors or distributional conflict</li>
-          <li>Trade costs and scale are outside the model</li>
-        </ul>
-      </section>
-
-      <section data-section="specific" class="section-title">
-        <div class="section-label">Section II</div>
-        <h2>Specific-Factors Model</h2>
-        <p>Short-run distribution and political economy.</p>
-      </section>
-
-      <section data-section="specific">
-        <h2>Structure</h2>
-        <ul>
-          <li>Three factors: labor (L), capital (K), land (T)</li>
-          <li>Labor mobile across sectors; K and T are sector-specific</li>
-          <li>Diminishing MPL in each sector</li>
-        </ul>
-      </section>
-
-      <section data-section="specific">
-        <h2>Production Functions</h2>
-        <div class="equation">
-          \[Q_M = F(K, L_M), \quad Q_A = G(T, L_A)\]
-        </div>
-        <div class="equation">
-          \[P_M \cdot MPL_M = P_A \cdot MPL_A = w\]
-        </div>
-      </section>
-
-      <section data-section="specific" class="diagram-slide">
-        <h2>Concave PPF</h2>
-        <div class="diagram">
-          <svg viewBox="0 0 480 320" aria-label="Specific factors PPF">
-            <defs>
-              <linearGradient id="ppfCurve" x1="0" x2="1">
-                <stop offset="0%" stop-color="#7aa2f7" />
-                <stop offset="100%" stop-color="#f7768e" />
-              </linearGradient>
-            </defs>
-            <rect x="36" y="20" width="410" height="260" rx="18" fill="#0f1725" stroke="#26384f" />
-            <line x1="78" y1="250" x2="420" y2="250" stroke="#3a4a63" stroke-width="2" />
-            <line x1="78" y1="250" x2="78" y2="40" stroke="#3a4a63" stroke-width="2" />
-            <path d="M78 250 C 160 120, 260 80, 400 70" fill="none" stroke="url(#ppfCurve)" stroke-width="4" />
-            <circle cx="250" cy="130" r="5" fill="#f7768e" />
-            <text x="260" y="130" fill="#c6d4e7" font-size="12">Rising OC</text>
-          </svg>
-        </div>
-        <p class="note">Diminishing returns to labor make the PPF bowed out.</p>
-      </section>
-
-      <section data-section="specific">
-        <h2>Price Shock: \(P_M\) Rises</h2>
-        <ul>
-          <li>Labor shifts into manufacturing</li>
-          <li>\(MPL_M\) falls, \(MPL_A\) rises</li>
-          <li>Wage rises, but less than \(P_M\)</li>
-        </ul>
-      </section>
-
-      <section data-section="specific">
-        <h2>Distributional Effects</h2>
-        <div class="grid-3">
-          <div class="card">
-            <h3>Capital (M)</h3>
-            <p>Real return rises unambiguously.</p>
+          <div class="card reveal-on-scroll">
+            <span class="tag">Specific Factors</span>
+            <h3>Short-run distribution</h3>
+            <p>Who gains, who loses, and why policy coalitions form.</p>
+            <a href="hub.html">Explore factor returns</a>
           </div>
-          <div class="card">
-            <h3>Land (A)</h3>
-            <p>Real return falls unambiguously.</p>
+          <div class="card reveal-on-scroll">
+            <span class="tag">Gravity</span>
+            <h3>Trade volumes</h3>
+            <p>Economic size, distance, and multilateral resistance.</p>
+            <a href="hub.html">Run the gravity calculator</a>
           </div>
-          <div class="card">
-            <h3>Labor</h3>
-            <p>Ambiguous: depends on consumption weights.</p>
+          <div class="card reveal-on-scroll">
+            <span class="tag">Policy</span>
+            <h3>Tariffs and protection</h3>
+            <p>Supply and demand, effective protection, and real data.</p>
+            <a href="policy/tariffs_and_protection.md">Read the policy brief</a>
           </div>
         </div>
       </section>
 
-      <section data-section="specific" class="interactive">
-        <h2>Interactive: Price Shock Simulator</h2>
-        <div class="interactive-panel">
-          <div class="inputs">
-            <label class="range-label">Relative price \(P_M / P_A\)</label>
-            <input type="range" id="pmSlider" min="0.6" max="1.6" step="0.02" value="1.0" />
-            <div class="range-readout">Current value: <span id="pmValue">1.00</span></div>
+      <section id="resources" class="section">
+        <div class="split">
+          <div class="reveal-on-scroll">
+            <div class="eyebrow">Reference</div>
+            <h2>Resources for prep and review</h2>
+            <p>Use these for quick refreshers, problem sessions, or student handouts.</p>
           </div>
-          <div class="results">
-            <div class="metric"><span>Wage index</span><strong id="wIndex">1.00</strong></div>
-            <div class="metric"><span>Capital return</span><strong id="rIndex">1.00</strong></div>
-            <div class="metric"><span>Land return</span><strong id="tIndex">1.00</strong></div>
-            <div class="metric highlight"><span>Labor allocation</span><strong id="lSplit">M: 50% · A: 50%</strong></div>
-          </div>
-        </div>
-        <p class="note">Underlying calculation assumes Cobb-Douglas technology and solves for labor allocation.</p>
-      </section>
-
-      <section data-section="specific">
-        <h2>Relative Supply</h2>
-        <ul>
-          <li>Upward sloping in \(P_M/P_A\)</li>
-          <li>Trade equilibrium: RS intersects RD</li>
-          <li>Incomplete specialization is typical</li>
-        </ul>
-      </section>
-
-      <section data-section="specific">
-        <h2>Policy Lens</h2>
-        <ul>
-          <li>Tariff on agriculture raises \(P_A/P_M\)</li>
-          <li>Landowners gain; capital loses; labor ambiguous</li>
-          <li>Explains industry-based coalitions</li>
-        </ul>
-      </section>
-
-      <section data-section="gravity" class="section-title">
-        <div class="section-label">Section III</div>
-        <h2>Gravity Model</h2>
-        <p>Trade volumes, frictions, and structural counterfactuals.</p>
-      </section>
-
-      <section data-section="gravity">
-        <h2>Basic Gravity Equation</h2>
-        <div class="equation">
-          \[X_{ij} = G \cdot \frac{Y_i^a Y_j^b}{D_{ij}^c}\]
-        </div>
-        <ul>
-          <li>Flows rise with economic size and fall with trade costs</li>
-          <li>Distance proxies for freight, time, and information frictions</li>
-        </ul>
-      </section>
-
-      <section data-section="gravity">
-        <h2>Log-Linear Form</h2>
-        <div class="equation">
-          \[\ln X_{ij} = g + a\ln Y_i + b\ln Y_j - c\ln D_{ij} + Z_{ij}\gamma\]
-        </div>
-        <ul>
-          <li>\(Z_{ij}\): border, language, agreement, tariff variables</li>
-          <li>Estimated with exporter and importer fixed effects</li>
-        </ul>
-      </section>
-
-      <section data-section="gravity">
-        <h2>Structural Gravity</h2>
-        <div class="equation">
-          \[X_{ij} = \frac{Y_i E_j}{Y_W} \left(\frac{\tau_{ij}}{P_i P_j}\right)^{1-\sigma}\]
-        </div>
-        <ul>
-          <li>\(P_i, P_j\) are multilateral resistance terms</li>
-          <li>Trade is relative: bilateral costs vs. all other options</li>
-        </ul>
-      </section>
-
-      <section data-section="gravity" class="diagram-slide">
-        <h2>Multilateral Resistance Intuition</h2>
-        <div class="diagram">
-          <svg viewBox="0 0 520 300" aria-label="Multilateral resistance">
-            <rect x="30" y="20" width="460" height="240" rx="18" fill="#0f1725" stroke="#26384f" />
-            <circle cx="150" cy="140" r="38" fill="#64d2ff" opacity="0.9" />
-            <circle cx="360" cy="120" r="44" fill="#f6c177" opacity="0.9" />
-            <circle cx="330" cy="200" r="30" fill="#3dd6a2" opacity="0.9" />
-            <line x1="188" y1="140" x2="316" y2="120" stroke="#c6d4e7" stroke-width="2" stroke-dasharray="6 6" />
-            <text x="120" y="90" fill="#c6d4e7" font-size="12">Exporter i</text>
-            <text x="350" y="80" fill="#c6d4e7" font-size="12">Importer j</text>
-            <text x="290" y="230" fill="#c6d4e7" font-size="12">Rest of world</text>
-          </svg>
-        </div>
-        <p class="note">If everyone else is far from j, i trades more with j.</p>
-      </section>
-
-      <section data-section="gravity">
-        <h2>Estimation Practice</h2>
-        <ul>
-          <li>Exporter and importer fixed effects</li>
-          <li>Bilateral controls for trade costs</li>
-          <li>PPML for zeros and heteroskedasticity</li>
-        </ul>
-      </section>
-
-      <section data-section="gravity" class="interactive">
-        <h2>Interactive: Gravity Calculator</h2>
-        <div class="interactive-panel">
-          <div class="inputs">
-            <div class="input-group">
-              <label>GDP (exporter)</label>
-              <input type="number" id="gdpI" value="22" min="1" step="1" />
-            </div>
-            <div class="input-group">
-              <label>GDP (importer)</label>
-              <input type="number" id="gdpJ" value="18" min="1" step="1" />
-            </div>
-            <div class="input-group">
-              <label>Distance (000s km)</label>
-              <input type="number" id="dist" value="3.5" min="0.5" step="0.1" />
-            </div>
-            <div class="input-group">
-              <label>Border</label>
-              <select id="border">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-              </select>
-            </div>
-          </div>
-          <div class="results">
-            <div class="metric"><span>Predicted flow index</span><strong id="tradeFlow">113.1</strong></div>
-            <div class="metric"><span>ln X</span><strong id="lnTrade">4.73</strong></div>
-            <div class="metric highlight"><span>Border effect</span><strong id="borderEffect">None</strong></div>
-          </div>
-        </div>
-        <p class="note">Scale is normalized; focus on how size and distance move trade.</p>
-      </section>
-
-      <section data-section="gravity">
-        <h2>What Gravity Explains</h2>
-        <ul>
-          <li>Border effects and home bias</li>
-          <li>Trade creation and diversion under RTAs</li>
-          <li>Why large economies trade a lot even when far apart</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs" class="section-title">
-        <div class="section-label">Section IV</div>
-        <h2>Tariffs and Protection</h2>
-        <p>Supply, demand, and real-world policy effects.</p>
-      </section>
-
-      <section data-section="tariffs" class="diagram-slide">
-        <h2>Supply, Demand, and World Price</h2>
-        <div class="diagram">
-          <svg viewBox="0 0 520 320" aria-label="Small country with world price">
-            <rect x="36" y="20" width="440" height="260" rx="18" fill="#0f1725" stroke="#26384f" />
-            <line x1="80" y1="250" x2="450" y2="250" stroke="#3a4a63" stroke-width="2" />
-            <line x1="80" y1="250" x2="80" y2="50" stroke="#3a4a63" stroke-width="2" />
-            <line x1="90" y1="220" x2="420" y2="80" stroke="#64d2ff" stroke-width="4" />
-            <line x1="100" y1="80" x2="420" y2="220" stroke="#f7768e" stroke-width="4" />
-            <line x1="80" y1="170" x2="420" y2="170" stroke="#f6c177" stroke-width="3" stroke-dasharray="6 6" />
-            <text x="430" y="174" fill="#f6c177" font-size="12">P*</text>
-            <text x="420" y="260" fill="#c6d4e7" font-size="12">Q</text>
-            <text x="62" y="48" fill="#c6d4e7" font-size="12">P</text>
-            <text x="350" y="98" fill="#64d2ff" font-size="12">Supply</text>
-            <text x="330" y="210" fill="#f7768e" font-size="12">Demand</text>
-          </svg>
-        </div>
-        <ul>
-          <li>Small country takes world price P* as given</li>
-          <li>Imports = Q<sub>D</sub>(P*) − Q<sub>S</sub>(P*)</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs" class="diagram-slide">
-        <h2>Tariff Wedge</h2>
-        <div class="diagram">
-          <svg viewBox="0 0 520 320" aria-label="Tariff raises domestic price">
-            <rect x="36" y="20" width="440" height="260" rx="18" fill="#0f1725" stroke="#26384f" />
-            <line x1="80" y1="250" x2="450" y2="250" stroke="#3a4a63" stroke-width="2" />
-            <line x1="80" y1="250" x2="80" y2="50" stroke="#3a4a63" stroke-width="2" />
-            <line x1="90" y1="220" x2="420" y2="80" stroke="#64d2ff" stroke-width="4" />
-            <line x1="100" y1="80" x2="420" y2="220" stroke="#f7768e" stroke-width="4" />
-            <line x1="80" y1="170" x2="420" y2="170" stroke="#f6c177" stroke-width="2" stroke-dasharray="6 6" />
-            <line x1="80" y1="130" x2="420" y2="130" stroke="#3dd6a2" stroke-width="3" stroke-dasharray="6 6" />
-            <text x="430" y="174" fill="#f6c177" font-size="12">P*</text>
-            <text x="430" y="134" fill="#3dd6a2" font-size="12">P*+t</text>
-            <text x="420" y="260" fill="#c6d4e7" font-size="12">Q</text>
-            <text x="62" y="48" fill="#c6d4e7" font-size="12">P</text>
-          </svg>
-        </div>
-        <ul>
-          <li>Domestic price rises by t</li>
-          <li>Imports fall; government collects tariff revenue</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Effects of a Tariff</h2>
-        <ul>
-          <li>Consumer surplus decreases</li>
-          <li>Producer surplus increases</li>
-          <li>Government revenue increases</li>
-          <li>Deadweight loss from distorted production and consumption</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Small Country Tariff</h2>
-        <ul>
-          <li>World price is unchanged (no terms-of-trade effect)</li>
-          <li>Welfare loss equals deadweight loss</li>
-          <li>DWL ≈ 0.5 · t · (ΔQ<sub>D</sub> + ΔQ<sub>S</sub>)</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs" class="interactive">
-        <h2>Interactive: Small-Country Tariff</h2>
-        <div class="interactive-panel">
-          <div class="inputs">
-            <label class="range-label">Specific tariff (t)</label>
-            <input type="range" id="tariffSlider" min="0" max="12" step="0.5" value="4" />
-            <div class="range-readout">t = <span id="tariffValue">4.0</span></div>
-          </div>
-          <div class="results">
-            <div class="metric"><span>Domestic price</span><strong id="tariffPrice">24.0</strong></div>
-            <div class="metric"><span>Imports</span><strong id="tariffImports">24.0</strong></div>
-            <div class="metric"><span>Tariff revenue</span><strong id="tariffRevenue">96.0</strong></div>
-            <div class="metric highlight"><span>Deadweight loss</span><strong id="tariffDwl">24.0</strong></div>
-          </div>
-        </div>
-        <p class="note">Assumes linear demand and supply with fixed slopes; used for intuition.</p>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Effective Rate of Protection</h2>
-        <div class="equation">
-          \\[ERP = \\frac{t_f - a t_i}{1 - a}\\]
-        </div>
-        <ul>
-          <li>t<sub>f</sub>: tariff on final good; t<sub>i</sub>: tariff on inputs</li>
-          <li>a: share of imported inputs in final-good value</li>
-          <li>ERP can exceed nominal tariffs when inputs are lightly taxed</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Measuring the Amount of Protection</h2>
-        <ul>
-          <li>Nominal tariff rate (ad valorem or specific)</li>
-          <li>Ad valorem equivalents for quotas and standards</li>
-          <li>Coverage ratios: share of trade lines affected</li>
-          <li>Price wedge: domestic price − world price</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Short-Run vs Long-Run Costs</h2>
-        <ul>
-          <li>Short run: output and employment shift toward protected sectors</li>
-          <li>Higher input costs for downstream firms</li>
-          <li>Retaliation reduces export demand</li>
-          <li>Long run: lower productivity and slower diffusion of technology</li>
-        </ul>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>U.S. Tariffs in 2018–2020</h2>
-        <ul>
-          <li>By Feb 2020, average U.S. tariffs on Chinese exports were about 19.3%</li>
-          <li>Coverage reached roughly 66.6% of U.S. imports from China (2017 base, about $335B)</li>
-          <li>China’s retaliatory tariffs averaged about 21% and covered ~58.3% of U.S. exports to China</li>
-        </ul>
-        <p class="source">Source: PIIE (Bown), “US-China Trade War Tariffs: An Up-to-Date Chart” (piie.com/research/piie-charts/us-china-trade-war-tariffs-date-chart).</p>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>U.S. Trade Flows (Nominal, Goods + Services)</h2>
-        <div class="card">
-          <table class="data-table">
-            <thead>
-              <tr><th>Year</th><th>Exports</th><th>Imports</th><th>Deficit</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>2018</td><td>$2.501T</td><td>$3.129T</td><td>$0.628T</td></tr>
-              <tr><td>2019</td><td>$2.500T</td><td>$3.117T</td><td>$0.617T</td></tr>
-              <tr><td>2020</td><td>$2.132T</td><td>$2.811T</td><td>$0.679T</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note">2020 values reflect the pandemic shock.</p>
-        <p class="source">Sources: BEA annual trade releases (bea.gov/news/2020/us-international-trade-goods-and-services-december-2019 and bea.gov/news/2021/us-international-trade-goods-and-services-december-2020).</p>
-      </section>
-
-      <section data-section="tariffs" class="diagram-slide">
-        <h2>Live BEA Trade Flows (Quarterly SAAR)</h2>
-        <div class="chart-panel">
-          <div class="chart-controls">
-            <label>Range</label>
-            <select id="tradeRange">
-              <option value="10">Last 10 years</option>
-              <option value="20" selected>Last 20 years</option>
-              <option value="max">Max</option>
-            </select>
-          </div>
-          <div id="beaTradeChart" aria-label="Exports and Imports of Goods and Services chart"></div>
-        </div>
-        <p class="note">Exports (EXPGS) and imports (IMPGS), BEA via FRED.</p>
-        <p class="source">Source: BEA GDP tables via FRED series EXPGS and IMPGS (fred.stlouisfed.org/series/EXPGS, fred.stlouisfed.org/series/IMPGS).</p>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Winners and Losers: Evidence</h2>
-        <ul>
-          <li>Tariffs were largely passed through to U.S. import prices</li>
-          <li>Consumers and firms that use imports bore most of the cost</li>
-          <li>Retaliation reduced U.S. exports; aggregate real income fell</li>
-        </ul>
-        <p class="source">Sources: NBER w25672 (Amiti-Redding-Weinstein) and NBER w25638 (Fajgelbaum et al.) at nber.org/papers/w25672 and nber.org/papers/w25638.</p>
-      </section>
-
-      <section data-section="tariffs">
-        <h2>Agriculture and Retaliation</h2>
-        <ul>
-          <li>Retaliatory tariffs targeted U.S. farm exports</li>
-          <li>USDA’s Market Facilitation Program paid about $8.6B for 2018 losses</li>
-        </ul>
-        <p class="source">Source: CRS report on USDA trade aid (crsreports.congress.gov/product/pdf/R/R45310).</p>
-      </section>
-
-      <section data-section="tariffs" class="interactive">
-        <h2>Policy Counterfactuals</h2>
-        <div class="interactive-panel">
-          <div class="inputs">
-            <div class="input-group">
-              <label>Policy type</label>
-              <select id="policyType">
-                <option value="tariff" selected>Tariff (t)</option>
-                <option value="quota">Import quota (q_bar)</option>
-                <option value="subsidy">Production subsidy (s)</option>
-              </select>
-            </div>
-            <label class="range-label" id="policyLabel">Policy magnitude</label>
-            <input type="range" id="policySlider" min="0" max="12" step="0.5" value="4" />
-            <div class="range-readout">Value: <span id="policyValue">4.0</span></div>
-          </div>
-          <div class="results">
-            <div class="metric"><span>Domestic price</span><strong id="policyPrice">24.0</strong></div>
-            <div class="metric"><span>Imports</span><strong id="policyImports">24.0</strong></div>
-            <div class="metric"><span id="policyRevenueLabel">Revenue</span><strong id="policyRevenue">96.0</strong></div>
-            <div class="metric highlight"><span>Deadweight loss</span><strong id="policyDwl">24.0</strong></div>
-          </div>
-        </div>
-        <p class="note">Linear demand and supply; price effects are for a small country.</p>
-      </section>
-
-      <section data-section="synthesis" class="section-title">
-        <div class="section-label">Synthesis</div>
-        <h2>Three Models, One Toolkit</h2>
-        <p>Use them together to diagnose trade outcomes.</p>
-      </section>
-
-      <section data-section="synthesis">
-        <div class="grid-3">
-          <div class="card">
-            <h3>Ricardian</h3>
-            <p>Technology drives specialization and gains.</p>
-          </div>
-          <div class="card">
-            <h3>Specific-Factors</h3>
-            <p>Short-run winners and losers shape policy.</p>
-          </div>
-          <div class="card">
-            <h3>Gravity</h3>
-            <p>Trade costs and size explain volumes.</p>
+          <div class="reveal-on-scroll">
+            <ul class="list">
+              <li><a href="comparisons/model_comparison_table.md">Model comparison table</a></li>
+              <li><a href="resources/key_equations.md">Key equations sheet</a></li>
+              <li><a href="QUICK_START.md">Quick start guide</a></li>
+              <li><a href="CURRICULUM_GUIDE.md">Curriculum guide</a></li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section data-section="synthesis">
-        <h2>Board Sketch Guide</h2>
-        <ul>
-          <li>Ricardian: linear PPF, world price, specialization point</li>
-          <li>Specific-Factors: concave PPF, price shock, factor returns</li>
-          <li>Gravity: ln trade vs ln distance with fitted slope</li>
-        </ul>
-      </section>
-
-      <section data-section="synthesis" class="section-title">
-        <div class="section-label">Interactive Tools</div>
-        <h2>Real Data Models</h2>
-        <p><a href="hub.html" class="nav-link">Launch Interactive Models →</a></p>
-      </section>
-
-      <section data-section="synthesis">
-        <h2>Interactive Features</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Supply & Demand Lab</h3>
-            <p>Explore 16 scenarios: 1-2 goods, small/large economies, tariffs & subsidies</p>
+      <section id="policy" class="section">
+        <div class="card-grid">
+          <div class="card reveal-on-scroll">
+            <span class="tag">Policy lab</span>
+            <h3>Tariffs and protection</h3>
+            <p>Small-country tariff logic, ERP, and short vs long run costs.</p>
+            <a href="policy/tariffs_and_protection.md">Open policy brief</a>
           </div>
-          <div class="card">
-            <h3>Ricardian Visualizer</h3>
-            <p>Adjust labor productivity to see comparative advantage emerge</p>
+          <div class="card reveal-on-scroll">
+            <span class="tag">Slides</span>
+            <h3>Tariff visuals</h3>
+            <p>Supply-demand diagrams, wedge intuition, and U.S. evidence.</p>
+            <a href="slides.html">Go to tariff slides</a>
           </div>
-          <div class="card">
-            <h3>Specific Factors Effects</h3>
-            <p>Who wins and loses from trade? Adjust tariffs to see distributional impacts</p>
-          </div>
-          <div class="card">
-            <h3>Gravity Predictions</h3>
-            <p>Predict bilateral trade flows from country size and distance</p>
+          <div class="card reveal-on-scroll">
+            <span class="tag">Data</span>
+            <h3>BEA trade series</h3>
+            <p>Live trade flows in the slides, plus data files for analysis.</p>
+            <a href="data/trade-data.json">Download data</a>
           </div>
         </div>
       </section>
 
-      <section data-section="synthesis">
-        <h2>Quick Checks</h2>
-        <div class="grid-2">
-          <div class="card">
-            <h3>Ricardian</h3>
-            <p>If Home is twice as productive in both goods, does it trade? <strong>Yes, if opportunity costs differ.</strong></p>
+      <section id="teach" class="section">
+        <div class="banner reveal-on-scroll">
+          <div>
+            <h2>Teaching flow</h2>
+            <p>1. Start with slides -> 2. Demonstrate interactives -> 3. Assign theory notes -> 4. Use the policy brief for discussion.</p>
           </div>
-          <div class="card">
-            <h3>Specific-Factors</h3>
-            <p>When \(P_M\) rises, who gains most? <strong>Capital in M.</strong></p>
-          </div>
-          <div class="card">
-            <h3>Gravity</h3>
-            <p>Why fixed effects? <strong>They capture multilateral resistance and size.</strong></p>
-          </div>
-          <div class="card">
-            <h3>Across models</h3>
-            <p>Which model for distribution? <strong>Specific-Factors.</strong></p>
+          <div>
+            <p>Need a live demo? Keep both the slides and the interactive lab open in two tabs. The links above are designed for quick switching.</p>
+            <a href="hub.html">Launch the interactive lab</a>
           </div>
         </div>
       </section>
 
-      <section data-section="synthesis">
-        <h2>Key Takeaways</h2>
-        <ul>
-          <li>Comparative advantage explains patterns of specialization</li>
-          <li>Short-run factor specificity generates conflict</li>
-          <li>Trade costs and size dominate trade volumes</li>
-          <li>Combine theory and evidence for policy analysis</li>
-        </ul>
-      </section>
-
-      <section class="closing" data-background-gradient>
-        <h2>Thanks</h2>
-        <p>Next up: Heckscher–Ohlin and firm-level trade.</p>
-      </section>
+      <footer class="footer">
+        <p>Built for teaching international trade. Materials are organized for quick classroom delivery and student study.</p>
+      </footer>
     </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/math/math.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-  <script src="scripts.js"></script>
+  </main>
+  <script src="landing.js"></script>
 </body>
 </html>

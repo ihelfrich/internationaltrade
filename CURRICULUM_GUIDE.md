@@ -7,7 +7,7 @@
 ## Week-by-Week Integration
 
 ### **Week 1: Introduction to Trade**
-**Slides**: Use `index.html` presentation
+**Slides**: Use `slides.html` presentation
 **Interactive**: Launch **Gravity Model**
 - Students predict trade between two countries
 - Adjust GDP to see exponential effect
