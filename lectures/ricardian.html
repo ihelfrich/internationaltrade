@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lecture: Ricardian Model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lecture.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Ricardian Model — Full Lecture</h1>
+    <p>Comparative advantage, specialization, and gains from trade.</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <a href="#motivation">Motivation</a>
+      <a href="#setup">Setup</a>
+      <a href="#autarky">Autarky</a>
+      <a href="#trade">Trade</a>
+      <a href="#gains">Gains</a>
+      <a href="#example">Worked Example</a>
+    </nav>
+
+    <section id="motivation" class="section">
+      <h2>1) Motivation (the big idea)</h2>
+      <p>Here’s the core punchline: <strong>trade patterns are driven by opportunity costs, not absolute costs</strong>. That means a country can be worse at producing everything and still gain from trade. This is the logic you want students to internalize before we ever draw a PPF.</p>
+      <div class="callout">Comparative advantage is a statement about <em>relative efficiency</em>, not absolute productivity.</div>
+    </section>
+
+    <section id="setup" class="section">
+      <h2>2) Setup (intuition + math)</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Intuition</h3>
+          <ul>
+            <li>Two goods: cloth (C) and wine (W).</li>
+            <li>One factor: labor.</li>
+            <li>Perfect competition, constant returns.</li>
+            <li>Labor is mobile within a country, immobile across countries.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Math</h3>
+          <div class="math">\(Q_C = L_C/a_{LC}, \; Q_W = L_W/a_{LW}\)</div>
+          <div class="math">\(L_C + L_W = L\)</div>
+          <div class="math">\(a_{LC}Q_C + a_{LW}Q_W \le L\)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="autarky" class="section">
+      <h2>3) Autarky equilibrium</h2>
+      <p>The PPF is linear. Solve for it explicitly:</p>
+      <div class="math">\(Q_C = \frac{L}{a_{LC}} - \frac{a_{LW}}{a_{LC}} Q_W\)</div>
+      <p>The slope is \(-a_{LW}/a_{LC}\). That is the <strong>opportunity cost of wine in terms of cloth</strong>.</p>
+      <h3>Competitive wages</h3>
+      <div class="math">\(w = P_C/a_{LC} = P_W/a_{LW}\)</div>
+      <p>With labor mobile across sectors, wages must equalize. Hence autarky prices satisfy:</p>
+      <div class="math">\(P_W/P_C = a_{LW}/a_{LC}\)</div>
+    </section>
+
+    <section id="trade" class="section">
+      <h2>4) Trade equilibrium</h2>
+      <p>Compare opportunity costs across countries. Home has comparative advantage in cloth if:</p>
+      <div class="math">\(\frac{a_{LC}}{a_{LW}} < \frac{a^*_{LC}}{a^*_{LW}}\)</div>
+      <p>Trade prices must lie between autarky prices:</p>
+      <div class="math">\(\frac{a_{LW}}{a_{LC}} < (P_W/P_C)^{trade} < \frac{a^*_{LW}}{a^*_{LC}}\)</div>
+      <p>Given linear PPFs, we get complete specialization: Home exports cloth, Foreign exports wine.</p>
+    </section>
+
+    <section id="gains" class="section">
+      <h2>5) Gains from trade</h2>
+      <ul>
+        <li>Production specializes at a PPF endpoint.</li>
+        <li>Consumption occurs on a world-price line flatter than the PPF.</li>
+        <li>Consumption possibilities expand beyond autarky.</li>
+      </ul>
+      <div class="callout">In the Ricardian model, <strong>all workers gain</strong> because labor is the only factor.</div>
+      <div class="math">\(w/P_C = 1/a_{LC}\), \(w/P_W = (P_C/P_W)(1/a_{LC})\)</div>
+      <p>Trade raises real wages in terms of the imported good.</p>
+    </section>
+
+    <section id="example" class="section">
+      <h2>6) Worked Example</h2>
+      <p><strong>Home:</strong> \(a_{LC}=1, a_{LW}=2\) → OC of W = 2C</p>
+      <p><strong>Foreign:</strong> \(a^*_{LC}=2, a^*_{LW}=3\) → OC of W = 1.5C</p>
+      <div class="callout">Home has CA in cloth. Trade price satisfies \(1.5 < P_W/P_C < 2\).</div>
+      <ol class="steps">
+        <li>Compute opportunity costs for each country.</li>
+        <li>Compare ratios to identify CA.</li>
+        <li>Bound the world price between autarky prices.</li>
+        <li>Infer specialization and gains.</li>
+      </ol>
+    </section>
+
+    <div class="footer">Back to the hub: <a href="../index.html">International Econ Teaching Studio</a></div>
+  </div>
+</body>
+</html>

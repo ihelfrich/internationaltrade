@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lecture: Specific-Factors Model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lecture.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Specific-Factors Model — Full Lecture</h1>
+    <p>Short-run distribution, factor specificity, and policy incentives.</p>
+  </header>
+
+  <div class="container">
+    <nav>
+      <a href="#setup">Setup</a>
+      <a href="#equilibrium">Equilibrium</a>
+      <a href="#price-shock">Price Shock</a>
+      <a href="#returns">Returns</a>
+      <a href="#trade">Trade</a>
+      <a href="#example">Worked Example</a>
+    </nav>
+
+    <section id="setup" class="section">
+      <h2>1) Setup</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Intuition</h3>
+          <ul>
+            <li>Two sectors: manufacturing (M), agriculture (A).</li>
+            <li>Labor is mobile across sectors.</li>
+            <li>Capital (K) specific to M, land (T) specific to A.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Math</h3>
+          <div class="math">\(Q_M = F(K, L_M), \quad Q_A = G(T, L_A)\)</div>
+          <div class="math">\(L_M + L_A = L\)</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equilibrium" class="section">
+      <h2>2) Equilibrium conditions</h2>
+      <p>Firms hire labor until the value of marginal product equals the wage:</p>
+      <div class="math">\(P_M MPL_M = w, \quad P_A MPL_A = w\)</div>
+      <p>So labor allocation is pinned down by:</p>
+      <div class="math">\(P_M MPL_M = P_A MPL_A\)</div>
+      <p>Because MPLs are diminishing, the PPF is concave.</p>
+    </section>
+
+    <section id="price-shock" class="section">
+      <h2>3) Price shock mechanics</h2>
+      <ol class="steps">
+        <li>Suppose \(P_M\) rises.</li>
+        <li>Manufacturing becomes more profitable → labor shifts to M.</li>
+        <li>\(MPL_M\) falls, \(MPL_A\) rises.</li>
+        <li>Wage rises, but by less than \(P_M\).</li>
+      </ol>
+      <div class="callout">Result: labor’s real wage is ambiguous — it can buy more A but less M.</div>
+    </section>
+
+    <section id="returns" class="section">
+      <h2>4) Returns to specific factors</h2>
+      <div class="math">\(r_K = P_M MPK_M, \quad r_T = P_A MPT_A\)</div>
+      <p>If \(P_M\) rises, \(r_K\) increases more than proportionally (magnification), while \(r_T\) falls.</p>
+      <div class="callout">Specific factor in the expanding sector gains. Specific factor in the contracting sector loses.</div>
+    </section>
+
+    <section id="trade" class="section">
+      <h2>5) Opening to trade</h2>
+      <p>If the country has comparative advantage in M, world prices raise \(P_M/P_A\). The distributional effects mirror the price shock:</p>
+      <ul>
+        <li>Capital owners gain.</li>
+        <li>Landowners lose.</li>
+        <li>Workers face ambiguous effects.</li>
+      </ul>
+      <div class="callout">This model explains why trade politics are industry-based in the short run.</div>
+    </section>
+
+    <section id="example" class="section">
+      <h2>6) Worked example (directional)</h2>
+      <p>Assume Cobb–Douglas technologies:</p>
+      <div class="math">\(Q_M = K^{0.4}L_M^{0.6}, \quad Q_A = T^{0.4}L_A^{0.6}\)</div>
+      <p>A 10% rise in \(P_M\) induces labor reallocation into M:</p>
+      <ul>
+        <li>\(w\) rises less than 10%</li>
+        <li>\(r_K\) rises more than 10%</li>
+        <li>\(r_T\) falls</li>
+      </ul>
+    </section>
+
+    <div class="footer">Back to the hub: <a href="../index.html">International Econ Teaching Studio</a></div>
+  </div>
+</body>
+</html>

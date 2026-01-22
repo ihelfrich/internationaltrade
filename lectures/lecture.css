@@ -1,0 +1,148 @@
+:root {
+  --ink: #1e2a3b;
+  --ink-soft: #3d4c63;
+  --bg: #f7f3ec;
+  --accent: #c76b3c;
+  --accent-2: #1f7a7a;
+  --panel: #ffffff;
+  --line: rgba(30, 42, 59, 0.12);
+  --shadow: rgba(30, 42, 59, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 10% 10%, rgba(199, 107, 60, 0.08), transparent 45%),
+    radial-gradient(circle at 90% 15%, rgba(31, 122, 122, 0.08), transparent 50%),
+    linear-gradient(135deg, #f7f3ec 0%, #f2f6fb 100%);
+}
+
+header {
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
+  margin: 0 0 0.4rem;
+}
+
+header p {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.container {
+  width: min(1000px, 90vw);
+  margin: 0 auto 4rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+nav a {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.section {
+  background: var(--panel);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  padding: 1.8rem;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 18px 32px var(--shadow);
+}
+
+.section h2 {
+  font-family: "Fraunces", serif;
+  font-size: 1.6rem;
+  margin-top: 0;
+}
+
+.section h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.section p,
+.section li {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.callout {
+  border-left: 4px solid var(--accent);
+  background: rgba(199, 107, 60, 0.08);
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.math {
+  background: #fbfaf7;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin: 0.8rem 0;
+}
+
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+
+.steps li {
+  counter-increment: step;
+  margin-bottom: 0.6rem;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--accent-2);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
