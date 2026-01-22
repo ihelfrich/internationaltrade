@@ -318,8 +318,11 @@ function renderTradeChart(series) {
 
   container.innerHTML = "";
 
-  var width = container.clientWidth || 640;
-  var height = container.clientHeight || 320;
+  var width = container.clientWidth || 0;
+  var height = container.clientHeight || 0;
+  if (width < 10 || height < 10) {
+    return;
+  }
   var margin = { top: 20, right: 20, bottom: 40, left: 60 };
   var innerWidth = width - margin.left - margin.right;
   var innerHeight = height - margin.top - margin.bottom;
@@ -421,16 +424,30 @@ function initTradeChart() {
     return;
   }
 
-  Promise.all([
-    fetch("https://fred.stlouisfed.org/graph/fredgraph.csv?id=EXPGS").then(function (res) { return res.text(); }),
-    fetch("https://fred.stlouisfed.org/graph/fredgraph.csv?id=IMPGS").then(function (res) { return res.text(); })
-  ]).then(function (responses) {
+  function loadCsvPair(primaryA, primaryB, fallbackA, fallbackB) {
+    return Promise.all([
+      fetch(primaryA).then(function (res) { return res.text(); }),
+      fetch(primaryB).then(function (res) { return res.text(); })
+    ]).catch(function () {
+      return Promise.all([
+        fetch(fallbackA).then(function (res) { return res.text(); }),
+        fetch(fallbackB).then(function (res) { return res.text(); })
+      ]);
+    });
+  }
+
+  loadCsvPair(
+    "https://fred.stlouisfed.org/graph/fredgraph.csv?id=EXPGS",
+    "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IMPGS",
+    "data/fred_expgs.csv",
+    "data/fred_impgs.csv"
+  ).then(function (responses) {
     var exportsData = parseFredCsv(responses[0]);
     var importsData = parseFredCsv(responses[1]);
     tradeSeriesCache = buildTradeSeries(exportsData, importsData);
     renderTradeChart(filterTradeRange(tradeSeriesCache, rangeSelect.value));
   }).catch(function () {
-    // Fail quietly if offline.
+    // Fail quietly if offline and no local fallback.
   });
 
   rangeSelect.addEventListener("change", function () {
@@ -496,4 +513,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   initTradeChart();
   bindInputs();
+
+  if (typeof Reveal !== "undefined") {
+    Reveal.on("slidechanged", function (event) {
+      if (event.currentSlide && event.currentSlide.querySelector("#beaTradeChart")) {
+        if (tradeSeriesCache) {
+          renderTradeChart(filterTradeRange(tradeSeriesCache, document.getElementById("tradeRange").value));
+        }
+      }
+    });
+  }
+
+  window.addEventListener("resize", function () {
+    if (tradeSeriesCache && document.getElementById("beaTradeChart")) {
+      renderTradeChart(filterTradeRange(tradeSeriesCache, document.getElementById("tradeRange").value));
+    }
+  });
 });
