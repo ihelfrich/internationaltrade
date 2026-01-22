@@ -256,6 +256,28 @@
       showHub();
     }
 
+    // Add back button to hub
+    const backButtonHTML = `
+      <div style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+        <a href="landing.html" class="back-button">← Back to Home</a>
+        <a href="index.html" class="back-button" style="background: #3b82f6;">📊 View Slides</a>
+      </div>
+    `;
+
+    // Inject back button after header when in hub view
+    window.addEventListener('load', () => {
+      const header = document.querySelector('header');
+      if (header && document.getElementById('hub').style.display !== 'none') {
+        const container = header.nextElementSibling;
+        if (container && !container.querySelector('.injected-nav')) {
+          const nav = document.createElement('div');
+          nav.className = 'injected-nav';
+          nav.innerHTML = backButtonHTML;
+          container.insertBefore(nav, container.firstChild);
+        }
+      }
+    });
+
     function showHub() {
       const hub = document.getElementById('hub');
       hub.innerHTML = `

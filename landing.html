@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Economics: Interactive Models</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: linear-gradient(135deg, #1a1f35 0%, #16213e 100%);
+            color: #e0e7ff;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: rgba(13, 25, 50, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 210, 255, 0.2);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #64d2ff, #3dd6a2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-buttons a {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-buttons .theory-link {
+            background: rgba(100, 210, 255, 0.15);
+            color: #64d2ff;
+            border: 1px solid rgba(100, 210, 255, 0.3);
+        }
+
+        .nav-buttons .theory-link:hover {
+            background: rgba(100, 210, 255, 0.25);
+            border-color: rgba(100, 210, 255, 0.6);
+        }
+
+        .nav-buttons .slides-link {
+            background: rgba(61, 214, 162, 0.15);
+            color: #3dd6a2;
+            border: 1px solid rgba(61, 214, 162, 0.3);
+        }
+
+        .nav-buttons .slides-link:hover {
+            background: rgba(61, 214, 162, 0.25);
+            border-color: rgba(61, 214, 162, 0.6);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64d2ff, #3dd6a2, #64d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #a0aec0;
+            margin-bottom: 2rem;
+        }
+
+        /* Featured Model Section */
+        .featured-model {
+            background: linear-gradient(135deg, rgba(100, 210, 255, 0.1), rgba(61, 214, 162, 0.1));
+            border: 1px solid rgba(100, 210, 255, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e72);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .featured-header h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+        }
+
+        .featured-description {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-description p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #64d2ff, #3dd6a2);
+            color: #0d1932;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(100, 210, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(100, 210, 255, 0.4);
+        }
+
+        /* Audience Levels */
+        .audience-section {
+            margin-bottom: 4rem;
+        }
+
+        .audience-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(22, 33, 62, 0.9));
+            border: 1px solid rgba(100, 210, 255, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .audience-card:hover {
+            border-color: rgba(100, 210, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(100, 210, 255, 0.15);
+        }
+
+        .audience-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #64d2ff;
+        }
+
+        .audience-card .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card ul {
+            list-style: none;
+            color: #cbd5e1;
+        }
+
+        .audience-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .audience-card li:before {
+            content: "→";
+            color: #3dd6a2;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .audience-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(100, 210, 255, 0.15);
+            color: #64d2ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 210, 255, 0.3);
+        }
+
+        .audience-link:hover {
+            background: rgba(100, 210, 255, 0.3);
+            border-color: rgba(100, 210, 255, 0.6);
+        }
+
+        /* Model Grid */
+        .models-section {
+            margin-bottom: 4rem;
+        }
+
+        .models-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .model-card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.8), rgba(22, 33, 62, 0.8));
+            border: 1px solid rgba(100, 210, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .model-card:hover {
+            border-color: rgba(100, 210, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(100, 210, 255, 0.15);
+        }
+
+        .model-card.active {
+            background: linear-gradient(135deg, rgba(100, 210, 255, 0.2), rgba(61, 214, 162, 0.2));
+            border-color: rgba(100, 210, 255, 0.5);
+        }
+
+        .model-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #64d2ff;
+        }
+
+        .model-card p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .model-link {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: rgba(100, 210, 255, 0.15);
+            color: #64d2ff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 210, 255, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .model-link:hover {
+            background: rgba(100, 210, 255, 0.3);
+            border-color: rgba(100, 210, 255, 0.6);
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background: linear-gradient(135deg, rgba(100, 210, 255, 0.05), rgba(61, 214, 162, 0.05));
+            border: 1px solid rgba(100, 210, 255, 0.15);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .resources-section h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: rgba(26, 31, 53, 0.6);
+            border: 1px solid rgba(100, 210, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            border-color: rgba(100, 210, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .resource-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #3dd6a2;
+        }
+
+        .resource-card p {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            color: #64d2ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #3dd6a2;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(13, 25, 50, 0.8);
+            border-top: 1px solid rgba(100, 210, 255, 0.2);
+            padding: 2rem;
+            text-align: center;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .featured-description {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+
+            .nav-buttons a {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>🌍 Intl. Econ.</h1>
+            </div>
+            <nav class="nav-buttons">
+                <a href="#theory" class="theory-link">📖 Theory Models</a>
+                <a href="index.html" class="slides-link">📊 Slides</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h2>Interactive International Economics</h2>
+            <p>Explore trade theory through beautiful, real-time visualizations</p>
+        </div>
+
+        <!-- Featured Model: Supply & Demand -->
+        <div class="featured-model">
+            <div class="featured-header">
+                <div class="featured-badge">⭐ Featured</div>
+                <h3>Supply & Demand Lab</h3>
+            </div>
+            <div class="featured-description">
+                <div>
+                    <p><strong>Start here!</strong> Visualize how tariffs, subsidies, and policy changes affect equilibrium prices, quantities, and welfare.</p>
+                    <p style="margin-top: 1rem;">Perfect for understanding the real-world impacts of trade policy on consumers, producers, and society.</p>
+                </div>
+                <div>
+                    <p><strong>What you'll explore:</strong></p>
+                    <ul style="list-style: disc; margin-left: 1.5rem; color: #cbd5e1;">
+                        <li>16 different economic scenarios</li>
+                        <li>1-2 goods, small/large economies</li>
+                        <li>Open/closed trade policies</li>
+                        <li>Tariffs, subsidies, and quotas</li>
+                        <li>Real-time welfare calculations</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="hub.html?model=supply-demand" class="cta-button">Launch S&D Lab →</a>
+        </div>
+
+        <!-- Audience-Specific Paths -->
+        <div class="audience-section">
+            <h3>Choose Your Path</h3>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="emoji">🎓</div>
+                    <h4>Undergraduates</h4>
+                    <p>Learning trade theory for the first time?</p>
+                    <ul>
+                        <li>Interactive models first</li>
+                        <li>Build intuition visually</li>
+                        <li>Learn concepts step-by-step</li>
+                        <li>See real-world applications</li>
+                    </ul>
+                    <a href="#" class="audience-link">Start Learning →</a>
+                </div>
+
+                <div class="audience-card">
+                    <div class="emoji">📚</div>
+                    <h4>Graduate Students</h4>
+                    <p>Ready for deeper theoretical analysis?</p>
+                    <ul>
+                        <li>Comprehensive theory docs</li>
+                        <li>Mathematical proofs included</li>
+                        <li>Compare model predictions</li>
+                        <li>Research applications</li>
+                    </ul>
+                    <a href="#theory" class="audience-link">Deep Dive →</a>
+                </div>
+
+                <div class="audience-card">
+                    <div class="emoji">🔬</div>
+                    <h4>PhD / Researchers</h4>
+                    <p>Need empirical validation?</p>
+                    <ul>
+                        <li>Real trade data</li>
+                        <li>Model validation tools</li>
+                        <li>Comparative analysis</li>
+                        <li>Extension frameworks</li>
+                    </ul>
+                    <a href="hub.html?model=gravity" class="audience-link">Research Tools →</a>
+                </div>
+
+                <div class="audience-card">
+                    <div class="emoji">🏛️</div>
+                    <h4>Policy Makers</h4>
+                    <p>Understanding trade policy impacts?</p>
+                    <ul>
+                        <li>Policy scenario tools</li>
+                        <li>Real-world data evidence</li>
+                        <li>Tariff calculators</li>
+                        <li>Contemporary case studies</li>
+                    </ul>
+                    <a href="hub.html?model=supply-demand" class="audience-link">Policy Tools →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Models -->
+        <div class="models-section">
+            <h3>All Interactive Models</h3>
+            <div class="models-grid">
+                <div class="model-card active">
+                    <h4>📈 Supply & Demand</h4>
+                    <p>Tariffs, subsidies, market equilibrium, and welfare</p>
+                    <a href="hub.html?model=supply-demand" class="model-link">Explore Model</a>
+                </div>
+
+                <div class="model-card">
+                    <h4>🏭 Ricardian Model</h4>
+                    <p>Comparative advantage through labor productivity</p>
+                    <a href="hub.html?model=ricardian" class="model-link">Explore Model</a>
+                </div>
+
+                <div class="model-card">
+                    <h4>⚙️ Specific Factors</h4>
+                    <p>Short-run distributional effects of trade</p>
+                    <a href="hub.html?model=specific-factors" class="model-link">Explore Model</a>
+                </div>
+
+                <div class="model-card">
+                    <h4>🌐 Gravity Model</h4>
+                    <p>Bilateral trade flows from GDP and distance</p>
+                    <a href="hub.html?model=gravity" class="model-link">Explore Model</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="resources-section">
+            <h3>Theory & References</h3>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h4>📖 Ricardian Model</h4>
+                    <p>Complete theory, proofs, and examples</p>
+                    <a href="models/RicardianModel.md" class="resource-link">Read Theory →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h4>📖 Specific Factors Model</h4>
+                    <p>Short-run trade effects and factor returns</p>
+                    <a href="models/SpecificFactorsModel.md" class="resource-link">Read Theory →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h4>📖 Heckscher-Ohlin Model</h4>
+                    <p>Factor endowments and comparative advantage</p>
+                    <a href="models/HeckscherOhlinModel.md" class="resource-link">Read Theory →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h4>📐 Key Equations</h4>
+                    <p>All model formulas and implementations</p>
+                    <a href="resources/key_equations.md" class="resource-link">View Reference →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h4>🔄 Model Comparisons</h4>
+                    <p>How different models answer different questions</p>
+                    <a href="comparisons/model_comparison_table.md" class="resource-link">Compare Models →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h4>📊 Presentation Slides</h4>
+                    <p>Full lecture materials and visualizations</p>
+                    <a href="index.html" class="resource-link">View Slides →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>International Economics Interactive Platform • Built with D3.js, passion, and rigorous economic theory</p>
+        <p style="margin-top: 1rem; color: #64a0ff;">MIT License • Open source • <a href="#" style="color: #64a0ff; text-decoration: none;">GitHub</a></p>
+    </footer>
+</body>
+</html>
