@@ -1,0 +1,110 @@
+{
+  "countries": [
+    {
+      "name": "USA",
+      "gdp": 27000,
+      "bilateral_distances": {
+        "Canada": 0.5,
+        "Mexico": 2,
+        "Japan": 11,
+        "China": 12,
+        "Germany": 6,
+        "India": 14
+      }
+    },
+    {
+      "name": "China",
+      "gdp": 17000,
+      "bilateral_distances": {
+        "USA": 12,
+        "Japan": 2,
+        "India": 5,
+        "Germany": 8,
+        "Canada": 14,
+        "Mexico": 15
+      }
+    },
+    {
+      "name": "Japan",
+      "gdp": 4000,
+      "bilateral_distances": {
+        "USA": 11,
+        "China": 2,
+        "India": 6,
+        "Germany": 9,
+        "Canada": 12,
+        "Mexico": 13
+      }
+    },
+    {
+      "name": "Germany",
+      "gdp": 4000,
+      "bilateral_distances": {
+        "USA": 6,
+        "China": 8,
+        "Japan": 9,
+        "India": 7,
+        "Canada": 7,
+        "Mexico": 10
+      }
+    },
+    {
+      "name": "India",
+      "gdp": 3700,
+      "bilateral_distances": {
+        "USA": 14,
+        "China": 5,
+        "Japan": 6,
+        "Germany": 7,
+        "Canada": 15,
+        "Mexico": 16
+      }
+    },
+    {
+      "name": "Canada",
+      "gdp": 2000,
+      "bilateral_distances": {
+        "USA": 0.5,
+        "China": 14,
+        "Japan": 12,
+        "Germany": 7,
+        "India": 15,
+        "Mexico": 3
+      }
+    },
+    {
+      "name": "Mexico",
+      "gdp": 1200,
+      "bilateral_distances": {
+        "USA": 2,
+        "China": 15,
+        "Japan": 13,
+        "Germany": 10,
+        "India": 16,
+        "Canada": 3
+      }
+    }
+  ],
+  "commodities": [
+    {
+      "name": "Cloth",
+      "hs_code": "6204",
+      "description": "Textiles & Apparel"
+    },
+    {
+      "name": "Wine",
+      "hs_code": "2204",
+      "description": "Beverages"
+    },
+    {
+      "name": "Steel",
+      "hs_code": "7208",
+      "description": "Iron & Steel"
+    },
+    {
+      "name": "Electronics",
+      "hs_code": "8542",
+      "description": "Semiconductors & Components"
+    }
+  ]
+}

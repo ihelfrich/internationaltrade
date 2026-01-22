@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive International Economics Models</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #1f2937;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .model-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .model-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #1e40af;
+    }
+
+    .model-card p {
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .model-card .scenarios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .scenario-badge {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .model-card a {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.5rem;
+      background: #1e40af;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .model-card a:hover {
+      background: #1e3a8a;
+    }
+
+    .visualization {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      background: #f3f4f6;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .control-group label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+
+    .control-group input,
+    .control-group select {
+      padding: 0.6rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .control-group input:focus,
+    .control-group select:focus {
+      outline: none;
+      border-color: #1e40af;
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    #visualization {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: auto;
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    svg {
+      background: white;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background: #6b7280;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #4b5563;
+    }
+
+    .stats {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 4px;
+    }
+
+    .stats h4 {
+      margin-bottom: 0.5rem;
+      color: #0c4a6e;
+    }
+
+    .stats p {
+      margin: 0.25rem 0;
+      color: #164e63;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.75rem;
+      }
+
+      .model-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Interactive International Economics</h1>
+      <p>Explore supply & demand, comparative advantage, factor mobility, and trade patterns</p>
+    </header>
+
+    <div id="hub" class="model-grid">
+      <!-- Model cards will be populated here -->
+    </div>
+
+    <div id="player" style="display: none;">
+      <a href="hub.html" class="back-button">← Back to Models</a>
+      <div id="model-header"></div>
+      <div class="controls" id="controls"></div>
+      <div class="visualization">
+        <div id="visualization"></div>
+      </div>
+      <div id="stats" class="stats"></div>
+    </div>
+  </div>
+
+  <script src="js/d3-utils.js"></script>
+  <script src="js/models.js"></script>
+  <script>
+    // Check URL for model parameter
+    const params = new URLSearchParams(window.location.search);
+    const modelParam = params.get('model');
+
+    if (modelParam) {
+      loadModelPlayer(modelParam);
+    } else {
+      showHub();
+    }
+
+    function showHub() {
+      const hub = document.getElementById('hub');
+      hub.innerHTML = `
+        <div class="model-card">
+          <h3>Supply & Demand Models</h3>
+          <p>Explore equilibrium, tariffs, subsidies, and welfare effects across different economy configurations.</p>
+          <div class="scenarios">
+            <span class="scenario-badge">1-2 Goods</span>
+            <span class="scenario-badge">Small/Large</span>
+            <span class="scenario-badge">Open/Closed</span>
+            <span class="scenario-badge">Tariffs</span>
+            <span class="scenario-badge">Subsidies</span>
+          </div>
+          <a href="?model=sandp">Explore</a>
+        </div>
+
+        <div class="model-card">
+          <h3>Ricardian Model</h3>
+          <p>Comparative advantage through labor productivity differences. Understand why countries specialize and trade.</p>
+          <div class="scenarios">
+            <span class="scenario-badge">Opportunity Cost</span>
+            <span class="scenario-badge">PPF</span>
+            <span class="scenario-badge">Gains from Trade</span>
+          </div>
+          <a href="?model=ricardian">Explore</a>
+        </div>
+
+        <div class="model-card">
+          <h3>Specific Factors Model</h3>
+          <p>Analyze factor mobility constraints and distributional effects. Who wins and loses from trade?</p>
+          <div class="scenarios">
+            <span class="scenario-badge">Immobile Capital</span>
+            <span class="scenario-badge">Mobile Labor</span>
+            <span class="scenario-badge">Tariff Effects</span>
+          </div>
+          <a href="?model=specific-factors">Explore</a>
+        </div>
+
+        <div class="model-card">
+          <h3>Gravity Model</h3>
+          <p>Trade flows based on economic size and distance. Predict bilateral trade with the gravity equation.</p>
+          <div class="scenarios">
+            <span class="scenario-badge">GDP Size</span>
+            <span class="scenario-badge">Distance Elasticity</span>
+            <span class="scenario-badge">Trade Intensity</span>
+          </div>
+          <a href="?model=gravity">Explore</a>
+        </div>
+      `;
+    }
+
+    function loadModelPlayer(model) {
+      document.getElementById('hub').style.display = 'none';
+      document.getElementById('player').style.display = 'block';
+
+      if (model === 'sandp') {
+        loadSupplyDemand();
+      } else if (model === 'ricardian') {
+        loadRicardian();
+      } else if (model === 'specific-factors') {
+        loadSpecificFactors();
+      } else if (model === 'gravity') {
+        loadGravity();
+      }
+    }
+
+    function loadSupplyDemand() {
+      document.getElementById('model-header').innerHTML = '<h2>Supply & Demand Interactive Model</h2>';
+
+      const controlsHTML = `
+        <div class="control-group">
+          <label>Scenario</label>
+          <select id="scenario">
+            <option value="closed-1g">1 Good, Closed Economy</option>
+            <option value="closed-2g">2 Goods, Closed Economy</option>
+            <option value="open-small-1g">1 Good, Small Open Economy</option>
+            <option value="open-large-1g">1 Good, Large Open Economy</option>
+            <option value="open-small-2g">2 Goods, Small Open Economy</option>
+            <option value="open-large-2g">2 Goods, Large Open Economy</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Policy</label>
+          <select id="policy">
+            <option value="none">No Policy</option>
+            <option value="tariff">Tariff</option>
+            <option value="subsidy">Subsidy</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label>Policy Amount: <span id="policyValue">0</span></label>
+          <input type="range" id="policyAmount" min="0" max="5" step="0.1" value="0">
+        </div>
+
+        <div class="control-group">
+          <label>Supply Elasticity: <span id="supplyElasValue">0.3</span></label>
+          <input type="range" id="supplyElasticity" min="0.1" max="1" step="0.1" value="0.3">
+        </div>
+
+        <div class="control-group">
+          <label>Demand Elasticity: <span id="demandElasValue">0.5</span></label>
+          <input type="range" id="demandElasticity" min="0.1" max="1" step="0.1" value="0.5">
+        </div>
+      `;
+
+      document.getElementById('controls').innerHTML = controlsHTML;
+
+      // Event listeners
+      const updateViz = () => {
+        const scenario = document.getElementById('scenario').value;
+        const policy = document.getElementById('policy').value;
+        const policyAmount = parseFloat(document.getElementById('policyAmount').value);
+        const supplyElasticity = parseFloat(document.getElementById('supplyElasticity').value);
+        const demandElasticity = parseFloat(document.getElementById('demandElasticity').value);
+
+        // Update value displays
+        document.getElementById('policyValue').textContent = policyAmount.toFixed(2);
+        document.getElementById('supplyElasValue').textContent = supplyElasticity.toFixed(1);
+        document.getElementById('demandElasValue').textContent = demandElasticity.toFixed(1);
+
+        const config = {
+          supply_p0: 2,
+          supply_elasticity: supplyElasticity,
+          demand_p0: 20,
+          demand_elasticity: demandElasticity,
+          q_range: [0, 30],
+          p_range: [0, 25],
+          policy: policy !== 'none' ? { type: policy, amount: policyAmount } : null,
+          large_economy: scenario.includes('large'),
+          scenario_title: scenario
+        };
+
+        D3Utils.createSandDVisualization('visualization', config);
+      };
+
+      document.getElementById('scenario').addEventListener('change', updateViz);
+      document.getElementById('policy').addEventListener('change', updateViz);
+      document.getElementById('policyAmount').addEventListener('input', updateViz);
+      document.getElementById('supplyElasticity').addEventListener('input', updateViz);
+      document.getElementById('demandElasticity').addEventListener('input', updateViz);
+
+      updateViz();
+    }
+
+    function loadRicardian() {
+      document.getElementById('model-header').innerHTML = '<h2>Ricardian Model: Comparative Advantage</h2>';
+
+      const controlsHTML = `
+        <div class="control-group">
+          <label>Home Labor to Make Cloth: <span id="aLCValue">1</span></label>
+          <input type="range" id="aLC" min="0.5" max="3" step="0.1" value="1">
+        </div>
+
+        <div class="control-group">
+          <label>Home Labor to Make Wine: <span id="aLWValue">2</span></label>
+          <input type="range" id="aLW" min="0.5" max="3" step="0.1" value="2">
+        </div>
+
+        <div class="control-group">
+          <label>Foreign Labor to Make Cloth: <span id="aLCsValue">2</span></label>
+          <input type="range" id="aLCs" min="0.5" max="3" step="0.1" value="2">
+        </div>
+
+        <div class="control-group">
+          <label>Foreign Labor to Make Wine: <span id="aLWsValue">1</span></label>
+          <input type="range" id="aLWs" min="0.5" max="3" step="0.1" value="1">
+        </div>
+      `;
+
+      document.getElementById('controls').innerHTML = controlsHTML;
+
+      const updateViz = () => {
+        const aLC = parseFloat(document.getElementById('aLC').value);
+        const aLW = parseFloat(document.getElementById('aLW').value);
+        const aLCs = parseFloat(document.getElementById('aLCs').value);
+        const aLWs = parseFloat(document.getElementById('aLWs').value);
+
+        document.getElementById('aLCValue').textContent = aLC.toFixed(1);
+        document.getElementById('aLWValue').textContent = aLW.toFixed(1);
+        document.getElementById('aLCsValue').textContent = aLCs.toFixed(1);
+        document.getElementById('aLWsValue').textContent = aLWs.toFixed(1);
+
+        const result = EconomicModels.ricardian.analyzeComparativeAdvantage(aLC, aLW, aLCs, aLWs);
+
+        const oc_cloth_home = aLC / aLW;
+        const oc_cloth_foreign = aLCs / aLWs;
+
+        let svgHTML = `<svg width="600" height="400" style="border: 1px solid #ccc;">
+          <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold">Comparative Advantage</text>
+          
+          <text x="50" y="80" font-weight="bold">Home Country:</text>
+          <text x="70" y="105">OC(Cloth) = ${oc_cloth_home.toFixed(3)} Wine</text>
+          <text x="70" y="130">OC(Wine) = ${(1/oc_cloth_home).toFixed(3)} Cloth</text>
+          
+          <text x="50" y="170" font-weight="bold">Foreign Country:</text>
+          <text x="70" y="195">OC(Cloth) = ${oc_cloth_foreign.toFixed(3)} Wine</text>
+          <text x="70" y="220">OC(Wine) = ${(1/oc_cloth_foreign).toFixed(3)} Cloth</text>
+          
+          <line x1="50" y1="250" x2="550" y2="250" stroke="#ccc" stroke-width="1"/>
+          
+          <text x="50" y="280" font-weight="bold" font-size="14" fill="${result.home_exports === 'Cloth' ? '#059669' : '#dc2626'}">
+            Home Exports: ${result.home_exports}
+          </text>
+          <text x="50" y="310" font-weight="bold" font-size="14" fill="${result.foreign_exports === 'Wine' ? '#059669' : '#dc2626'}">
+            Foreign Exports: ${result.foreign_exports}
+          </text>
+          
+          <text x="50" y="350" font-weight="bold">Trade Price Range (P_Wine/P_Cloth):</text>
+          <text x="70" y="375" font-size="14">Between ${result.trade_price_range[0].toFixed(3)} and ${result.trade_price_range[1].toFixed(3)}</text>
+        </svg>`;
+
+        document.getElementById('visualization').innerHTML = svgHTML;
+
+        document.getElementById('stats').innerHTML = `
+          <h4>Analysis</h4>
+          <p><strong>Home's Comparative Advantage:</strong> ${result.home_exports === 'Cloth' ? 'Cloth (lower OC)' : 'Wine (lower OC)'}</p>
+          <p><strong>Trade will occur:</strong> ${result.trade_price_range[0] !== result.trade_price_range[1] ? 'Yes - both countries gain' : 'No - same opportunity costs'}</p>
+          <p><strong>Specialization Pattern:</strong> Home produces ${result.home_exports}, Foreign produces ${result.foreign_exports}</p>
+        `;
+      };
+
+      document.getElementById('aLC').addEventListener('input', updateViz);
+      document.getElementById('aLW').addEventListener('input', updateViz);
+      document.getElementById('aLCs').addEventListener('input', updateViz);
+      document.getElementById('aLWs').addEventListener('input', updateViz);
+
+      updateViz();
+    }
+
+    function loadSpecificFactors() {
+      document.getElementById('model-header').innerHTML = '<h2>Specific Factors Model: Distributional Effects</h2>';
+
+      const controlsHTML = `
+        <div class="control-group">
+          <label>Initial World Price: <span id="priceValue">10</span></label>
+          <input type="range" id="initialPrice" min="5" max="20" step="0.5" value="10">
+        </div>
+
+        <div class="control-group">
+          <label>Tariff Rate: <span id="tariffValue">2</span></label>
+          <input type="range" id="tariffRate" min="0" max="5" step="0.1" value="2">
+        </div>
+
+        <div class="control-group">
+          <label>Factor Type</label>
+          <select id="factorType">
+            <option value="labor">Labor-intensive Sector</option>
+            <option value="capital">Capital-intensive Sector</option>
+          </select>
+        </div>
+      `;
+
+      document.getElementById('controls').innerHTML = controlsHTML;
+
+      const updateViz = () => {
+        const initialPrice = parseFloat(document.getElementById('initialPrice').value);
+        const tariffRate = parseFloat(document.getElementById('tariffRate').value);
+        const factorType = document.getElementById('factorType').value;
+
+        document.getElementById('priceValue').textContent = initialPrice.toFixed(1);
+        document.getElementById('tariffValue').textContent = tariffRate.toFixed(1);
+
+        const effect = EconomicModels.specificFactors.tariffEffect(initialPrice, tariffRate, factorType === 'labor');
+
+        const newPrice = effect.new_price;
+        const priceChange = effect.price_change;
+
+        let svgHTML = `<svg width="600" height="400" style="border: 1px solid #ccc;">
+          <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold">Tariff Effects on Factor Returns</text>
+          
+          <rect x="50" y="70" width="200" height="120" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+          <text x="150" y="95" text-anchor="middle" font-weight="bold">Before Tariff</text>
+          <text x="60" y="120">World Price: ${initialPrice.toFixed(2)}</text>
+          <text x="60" y="150" font-size="12">Protected sector production: baseline</text>
+          <text x="60" y="170" font-size="12">Other sector: unaffected</text>
+          
+          <rect x="350" y="70" width="200" height="120" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+          <text x="450" y="95" text-anchor="middle" font-weight="bold">After Tariff</text>
+          <text x="360" y="120">Domestic Price: ${newPrice.toFixed(2)}</text>
+          <text x="360" y="150" font-size="12">Protected sector: ${priceChange > 0 ? 'GAINS' : 'LOSES'}</text>
+          <text x="360" y="170" font-size="12">Other sector: ${priceChange > 0 ? 'LOSES' : 'GAINS'}</text>
+          
+          <line x1="300" y1="200" x2="300" y2="230" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+          
+          <text x="50" y="280" font-weight="bold" font-size="14">Impact on ${factorType === 'labor' ? 'Labor' : 'Capital'} in Protected Sector:</text>
+          <text x="70" y="310" font-size="14" fill="#059669">Real income change: +${(priceChange * 0.8).toFixed(2)}</text>
+          
+          <text x="50" y="350" font-weight="bold" font-size="14">Impact on ${factorType === 'labor' ? 'Labor' : 'Capital'} in Other Sector:</text>
+          <text x="70" y="375" font-size="14" fill="#dc2626">Real income change: -${(Math.abs(priceChange * 0.3)).toFixed(2)}</text>
+        </svg>`;
+
+        document.getElementById('visualization').innerHTML = svgHTML;
+
+        document.getElementById('stats').innerHTML = `
+          <h4>Specific Factors Model Predictions</h4>
+          <p><strong>Protected Sector:</strong> Factor gets ${priceChange > 0 ? 'MORE' : 'LESS'} valuable</p>
+          <p><strong>Import-Competing Sector:</strong> ${factorType === 'labor' ? 'Workers' : 'Capital owners'} ${priceChange > 0 ? 'benefit' : 'suffer'}</p>
+          <p><strong>Other Sector:</strong> Resources shift ${priceChange > 0 ? 'OUT' : 'INTO'} this sector, reducing factor returns</p>
+          <p><strong>Key Insight:</strong> Specific factors in protected sector gain; specific factors in import-competing sector lose</p>
+        `;
+      };
+
+      document.getElementById('initialPrice').addEventListener('input', updateViz);
+      document.getElementById('tariffRate').addEventListener('input', updateViz);
+      document.getElementById('factorType').addEventListener('change', updateViz);
+
+      updateViz();
+    }
+
+    function loadGravity() {
+      document.getElementById('model-header').innerHTML = '<h2>Gravity Model: Trade Flows</h2>';
+
+      const controlsHTML = `
+        <div class="control-group">
+          <label>Country 1 GDP: <span id="gdp1Value">1000</span></label>
+          <input type="range" id="gdp1" min="100" max="5000" step="100" value="1000">
+        </div>
+
+        <div class="control-group">
+          <label>Country 2 GDP: <span id="gdp2Value">2000</span></label>
+          <input type="range" id="gdp2" min="100" max="5000" step="100" value="2000">
+        </div>
+
+        <div class="control-group">
+          <label>Distance (1000s km): <span id="distValue">5</span></label>
+          <input type="range" id="distance" min="1" max="20" step="0.5" value="5">
+        </div>
+
+        <div class="control-group">
+          <label>Distance Elasticity: <span id="elastValue">1.2</span></label>
+          <input type="range" id="elasticity" min="0.5" max="2" step="0.1" value="1.2">
+        </div>
+      `;
+
+      document.getElementById('controls').innerHTML = controlsHTML;
+
+      const updateViz = () => {
+        const gdp1 = parseFloat(document.getElementById('gdp1').value);
+        const gdp2 = parseFloat(document.getElementById('gdp2').value);
+        const distance = parseFloat(document.getElementById('distance').value);
+        const elasticity = parseFloat(document.getElementById('elasticity').value);
+
+        document.getElementById('gdp1Value').textContent = gdp1.toFixed(0);
+        document.getElementById('gdp2Value').textContent = gdp2.toFixed(0);
+        document.getElementById('distValue').textContent = distance.toFixed(1);
+        document.getElementById('elastValue').textContent = elasticity.toFixed(1);
+
+        const trade = EconomicModels.gravity.tradeFlow(gdp1, gdp2, distance, elasticity, 1);
+
+        // Scale for visualization
+        const maxTrade = 50;
+        const barHeight = Math.min((trade / maxTrade) * 300, 300);
+
+        let svgHTML = `<svg width="600" height="400" style="border: 1px solid #ccc;">
+          <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold">Gravity Model of Trade</text>
+          
+          <text x="50" y="70" font-weight="bold">Trade Flow Equation:</text>
+          <text x="50" y="95" font-size="12">X = (GDP₁ × GDP₂) / Distance^β</text>
+          
+          <rect x="100" y="120" width="60" height="${barHeight}" fill="#3b82f6"/>
+          <text x="130" y="${360 - barHeight}" text-anchor="middle" font-weight="bold" font-size="14">${trade.toFixed(0)}</text>
+          <text x="130" y="380" text-anchor="middle" font-size="12">Trade Flow</text>
+          
+          <text x="50" y="420" font-size="11" fill="#666">
+            Multiplier effect: GDP₁ × GDP₂ = ${(gdp1 * gdp2).toFixed(0)}
+          </text>
+          <text x="50" y="440" font-size="11" fill="#666">
+            Distance penalty: ${distance}^${elasticity.toFixed(1)} = ${Math.pow(distance, elasticity).toFixed(1)}
+          </text>
+        </svg>`;
+
+        document.getElementById('visualization').innerHTML = svgHTML;
+
+        document.getElementById('stats').innerHTML = `
+          <h4>Gravity Model Results</h4>
+          <p><strong>Predicted Trade Flow:</strong> ${trade.toFixed(2)} units</p>
+          <p><strong>GDP Multiplier:</strong> ${(gdp1 * gdp2).toFixed(0)}</p>
+          <p><strong>Distance Discount Factor:</strong> ${(1 / Math.pow(distance, elasticity)).toFixed(4)}</p>
+          <p><strong>Elasticity Interpretation:</strong> 1% increase in distance reduces trade by ${elasticity.toFixed(1)}%</p>
+        `;
+      };
+
+      document.getElementById('gdp1').addEventListener('input', updateViz);
+      document.getElementById('gdp2').addEventListener('input', updateViz);
+      document.getElementById('distance').addEventListener('input', updateViz);
+      document.getElementById('elasticity').addEventListener('input', updateViz);
+
+      updateViz();
+    }
+  </script>
+
+  <svg width="0" height="0">
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+      </marker>
+    </defs>
+  </svg>
+</body>
+</html>
