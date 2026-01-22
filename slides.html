@@ -79,28 +79,50 @@
       </section>
 
       <section data-section="ricardian">
-        <h2>Setup</h2>
+        <h2>Assumptions (Intuition + Math)</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Intuition</h3>
+            <ul>
+              <li>Labor is the only factor.</li>
+              <li>Perfect competition, constant returns.</li>
+              <li>Labor moves across sectors within a country.</li>
+              <li>Technology differs across countries.</li>
+            </ul>
+          </div>
+          <div class="equation-card">
+            <h3>Math</h3>
+            <ul>
+              <li>Unit labor requirements: \(a_{LC}, a_{LW}\).</li>
+              <li>Production: \(Q_C = L_C/a_{LC}\), \(Q_W = L_W/a_{LW}\).</li>
+              <li>Labor constraint: \(L_C + L_W = L\).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section data-section="ricardian">
+        <h2>Technology and the PPF</h2>
         <div class="equation">
           \[a_{LC} Q_C + a_{LW} Q_W \le L\]
         </div>
-        <ul>
-          <li>Technology summarized by unit labor requirements.</li>
-          <li>Linear PPF with slope \(-a_{LW}/a_{LC}\).</li>
-          <li>Opportunity cost drives specialization.</li>
-        </ul>
+        <div class="equation">
+          \[Q_C = \frac{L}{a_{LC}} - \frac{a_{LW}}{a_{LC}} Q_W\]
+        </div>
+        <p class="note">The slope \(-a_{LW}/a_{LC}\) is the opportunity cost of wine in cloth.</p>
       </section>
 
       <section data-section="ricardian">
         <h2>Autarky Prices and Wages</h2>
         <div class="grid-2">
           <div class="equation-card">
-            \[\frac{P_W}{P_C} = \frac{a_{LW}}{a_{LC}}\]
-          </div>
-          <div class="equation-card">
             \[w = \frac{P_C}{a_{LC}} = \frac{P_W}{a_{LW}}\]
           </div>
+          <div class="equation-card">
+            \[\frac{P_W}{P_C} = \frac{a_{LW}}{a_{LC}}\]
+          </div>
         </div>
-        <p class="note">Competitive wages equalize across sectors.</p>
+        <p class="note">Competition + labor mobility equalize wages across sectors.</p>
       </section>
 
       <section data-section="ricardian" class="diagram-slide">
@@ -118,7 +140,7 @@
             <text x="360" y="120" fill="#7bd4d4" font-size="12">World price</text>
           </svg>
         </div>
-        <p class="note">Trade lets consumption move to a flatter world-price line.</p>
+        <p class="note">Trade rotates the budget line outward relative to autarky.</p>
       </section>
 
       <section data-section="ricardian">
@@ -127,20 +149,54 @@
           \[\frac{a_{LC}}{a_{LW}} < \frac{a^*_{LC}}{a^*_{LW}}\Rightarrow\text{Home has CA in cloth}\]
         </div>
         <ul>
+          <li>Autarky price ratios determine specialization.</li>
           <li>Trade price must lie between autarky prices.</li>
-          <li>Absolute advantage is irrelevant for trade patterns.</li>
+        </ul>
+      </section>
+
+      <section data-section="ricardian">
+        <h2>Trade Equilibrium</h2>
+        <div class="equation">
+          \[\frac{a_{LW}}{a_{LC}} < \left(\frac{P_W}{P_C}\right)^{\text{trade}} < \frac{a^*_{LW}}{a^*_{LC}}\]
+        </div>
+        <ul>
+          <li>Home exports cloth, imports wine.</li>
+          <li>Foreign exports wine, imports cloth.</li>
+          <li>Complete specialization with linear PPFs.</li>
         </ul>
       </section>
 
       <section data-section="ricardian">
         <h2>Gains from Trade</h2>
         <div class="callout">
-          Production specializes at a PPF endpoint; consumption lies on a world-price budget line outside the PPF.
+          Production specializes at a PPF endpoint; consumption lies on a world-price line outside the PPF.
         </div>
         <ul>
+          <li>All workers gain in the one-factor model.</li>
           <li>Real wage rises in terms of the imported good.</li>
-          <li>With one factor, all workers gain or stay whole.</li>
         </ul>
+      </section>
+
+      <section data-section="ricardian">
+        <h2>Real Wages</h2>
+        <div class="grid-2">
+          <div class="equation-card">
+            \[\frac{w}{P_C} = \frac{1}{a_{LC}}\]
+          </div>
+          <div class="equation-card">
+            \[\frac{w}{P_W} = \frac{P_C}{P_W} \cdot \frac{1}{a_{LC}}\]
+          </div>
+        </div>
+        <p class="note">Under trade, \(w/P_W\) increases for the export country.</p>
+      </section>
+
+      <section data-section="ricardian">
+        <h2>Worked Example</h2>
+        <div class="card">
+          <p><strong>Home:</strong> \(a_{LC}=1, a_{LW}=2\) → OC of W = 2C</p>
+          <p><strong>Foreign:</strong> \(a^*_{LC}=2, a^*_{LW}=3\) → OC of W = 1.5C</p>
+          <p><strong>Result:</strong> Home has CA in cloth, Foreign in wine. Trade price satisfies \(1.5 < P_W/P_C < 2\).</p>
+        </div>
       </section>
 
       <section data-section="ricardian" class="interactive">
@@ -172,7 +228,6 @@
           </div>
         </div>
       </section>
-
       <section data-section="specific" class="section-title">
         <div class="section-label">Section II</div>
         <h2>Specific-Factors Model</h2>
@@ -181,14 +236,42 @@
 
       <section data-section="specific">
         <h2>Structure</h2>
-        <ul>
-          <li>Factors: labor (mobile), capital (M-specific), land (A-specific).</li>
-          <li>Diminishing marginal products in each sector.</li>
-          <li>Relative prices reallocate labor.</li>
-        </ul>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Intuition</h3>
+            <ul>
+              <li>Labor moves across sectors.</li>
+              <li>Capital and land are stuck in their sectors.</li>
+              <li>Prices shift labor and returns.</li>
+            </ul>
+          </div>
+          <div class="equation-card">
+            <h3>Math</h3>
+            <ul>
+              <li>\(Q_M = F(K, L_M)\), \(Q_A = G(T, L_A)\).</li>
+              <li>Labor market: \(L_M + L_A = L\).</li>
+              <li>\(K\) and \(T\) are fixed in the short run.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section data-section="specific">
+        <h2>Marginal Products (Cobb-Douglas)</h2>
+        <div class="equation">
+          \[Q_M = K^\alpha L_M^{1-\alpha}, \quad Q_A = T^\beta L_A^{1-\beta}\]
+        </div>
+        <div class="equation">
+          \[MPL_M = (1-\alpha) K^\alpha L_M^{-\alpha}, \quad MPL_A = (1-\beta) T^\beta L_A^{-\beta}\]
+        </div>
+      </section>
+
+      <section data-section="specific">
+        <h2>Labor Allocation</h2>
         <div class="equation">
           \[P_M \cdot MPL_M = P_A \cdot MPL_A = w\]
         </div>
+        <p class="note">Relative prices pin down \(L_M\) and \(L_A\).</p>
       </section>
 
       <section data-section="specific" class="diagram-slide">
@@ -202,26 +285,39 @@
             <text x="340" y="95" fill="#f08a8a" font-size="12">PPF (concave)</text>
           </svg>
         </div>
-        <p class="note">Opportunity cost rises as labor shifts across sectors.</p>
+        <p class="note">Opportunity cost rises as labor shifts sectors.</p>
       </section>
 
       <section data-section="specific">
         <h2>Price Shock: \(P_M\) Rises</h2>
         <div class="grid-2">
           <div class="card">
-            <h3>Labor shifts</h3>
-            <p>From agriculture to manufacturing.</p>
+            <h3>Step 1</h3>
+            <p>Manufacturing becomes more profitable.</p>
           </div>
           <div class="card">
-            <h3>Marginal products</h3>
-            <p>\(MPL_M\) falls, \(MPL_A\) rises.</p>
+            <h3>Step 2</h3>
+            <p>Labor flows from A to M; \(MPL_M\) falls, \(MPL_A\) rises.</p>
           </div>
         </div>
         <div class="callout">Wage rises, but less than \(P_M\).</div>
       </section>
 
       <section data-section="specific">
-        <h2>Distributional Effects</h2>
+        <h2>Returns to Specific Factors</h2>
+        <div class="grid-2">
+          <div class="equation-card">
+            \[r_K = P_M \cdot MPK_M, \quad MPK_M = \alpha K^{\alpha-1} L_M^{1-\alpha}\]
+          </div>
+          <div class="equation-card">
+            \[r_T = P_A \cdot MPT_A, \quad MPT_A = \beta T^{\beta-1} L_A^{1-\beta}\]
+          </div>
+        </div>
+        <p class="note">Specific factor in the expanding sector gains; in the contracting sector loses.</p>
+      </section>
+
+      <section data-section="specific">
+        <h2>Distributional Summary</h2>
         <div class="grid-3">
           <div class="card">
             <h3>Capital (M)</h3>
@@ -235,6 +331,14 @@
             <h3>Labor</h3>
             <p>Ambiguous: depends on consumption weights.</p>
           </div>
+        </div>
+      </section>
+
+      <section data-section="specific">
+        <h2>Worked Example (Direction Only)</h2>
+        <div class="card">
+          <p>Suppose \(P_M\) rises by 10%. Labor moves into manufacturing, \(w\) rises less than 10%.</p>
+          <p>\(r_K\) rises more than 10% (magnification); \(r_T\) falls.</p>
         </div>
       </section>
 
@@ -263,7 +367,6 @@
           <li>Explains trade-policy coalitions.</li>
         </ul>
       </section>
-
       <section data-section="gravity" class="section-title">
         <div class="section-label">Section III</div>
         <h2>Gravity Model</h2>
