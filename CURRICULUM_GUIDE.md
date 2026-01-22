@@ -1,3 +1,13 @@
+# Curriculum Guide
+
+**Lectures**: Use `lectures/ricardian.html` and `lectures/specific_factors.html` for full walkthroughs.
+
+**Slides**: Use `slides.html` for classroom delivery.
+
+**Lab**: Use `hub.html` for interactive demos.
+
+**Notes**: Assign `notes/` for student reading.
+
 # Curriculum Integration Guide
 
 ## How to Use Interactive Models in Your Course
